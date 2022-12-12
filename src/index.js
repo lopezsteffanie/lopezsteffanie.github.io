@@ -1,3 +1,6 @@
+import 'regenerator-runtime/runtime';
+import axios from 'axios';
+
 const state = {
     temp: 72,
     city: 'San Luis Obispo',
