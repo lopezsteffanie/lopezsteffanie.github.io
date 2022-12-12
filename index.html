@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Report</title>
+    <title>Stevie's Weather Report</title>
     <link rel="stylesheet" href="styles/index.css"/>
 </head>
 
@@ -15,13 +15,13 @@
     
     <section class="city-name__display">
         <p>For the lovely city of 
-            <span id="cityName" class="header__city-name"></span></p>
+            <span id="cityName" class="header__city-name">San Luis Obispo</span></p>
     </section>
 
     <section class="city-name__section">
         <h2>City Name</h2>
         <input type="text" id="inputCity" value="San Luis Obispo" />
-        <button id="currentTempButton" class="city__current-temp-btn">Get Realtime Temp</button>
+        <button id="currentTempButton" class="city__current-temp-btn">Get Current Temp</button>
         <button id="cityButton" class="city__reset-btn">Reset</button>
     </section>
         
@@ -32,7 +32,8 @@
                 <button id="increaseTempControl">👆</button>
                 <button id="decreaseTempControl">👇</button>
             </div>
-            <span id="tempValue"></span>
+            <span id="tempValue">72</span>
+            <span id ="tempStyle">°F</span>
         </div>
     </section>
 
@@ -49,8 +50,8 @@
     <section class="garden__section">
         <h2>Weather Garden</h2>
         <div id="gardenContent" class="garden__content">
-            <div id="sky"></div>
-            <div id="landscape"></div>
+            <div id="sky">☁️ ☁️ ☁️ ☀️ ☁️ ☁️</div>
+            <div id="landscape">🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷</div>
         </div>
     </section>
     

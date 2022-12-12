@@ -8,6 +8,7 @@ const state = {
 // WAVE 1 //
 let tempValue = state.temp;
 const tempControl = document.querySelector('#tempValue');
+const tempStyleControl = document.querySelector('#tempStyle');
 
 const increaseTemp = () => {
     tempValue += 1;
@@ -22,14 +23,19 @@ const decreaseTemp = () => {
 const changeTempColor = () => {
     if (tempValue >= 80) {
         tempControl.style.color = 'crimson';
+        tempStyleControl.style.color = 'crimson'
     } else if (tempValue >= 70) {
         tempControl.style.color = 'coral';
+        tempStyleControl.style.color = 'coral'
     } else if (tempValue >= 60) {
         tempControl.style.color = 'peru';
+        tempStyleControl.style.color = 'peru'
     } else if (tempValue >= 50) {
         tempControl.style.color = 'olive';
+        tempStyleControl.style.color = 'olive'
     } else if (tempValue <= 49) {
         tempControl.style.color = 'steelblue';
+        tempStyleControl.style.color = 'steelblue'
     }
 };
 
@@ -115,7 +121,7 @@ currentTempButton.addEventListener('click', getLatLon);
 // Wave 5 //
 const changeSky = () => {
     const inputSky = document.getElementById('sky-select').value;
-    const skyContainer = document.getElementById('sky');
+    const skyContainer = document.querySelector('#sky');
     let sky = '';
     let skyColor = '';
     if (inputSky === 'Sunny') {
@@ -131,7 +137,7 @@ const changeSky = () => {
         sky = '🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨';
         skyColor = 'snowy';
     }
-    skyContainer.textContent = sky;
+    skyContainer.style.color = sky;
     const landscape = document.getElementById('gardenContent');
     landscape.classList = `garden__content ${skyColor}`;
 };
