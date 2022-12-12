@@ -11,6 +11,10 @@ body {
     margin: 2rem;
 }
 
+h2 {
+    margin-top: 0rem;
+}
+
 .header__header {
     color:cornflowerblue;
     grid-column: span 3;
@@ -117,7 +121,8 @@ body {
     margin-top: 1em;
 }
 
-.city__current-temp-btn {
+.city__current-temp-btn,
+.temp__convert-btn {
     border: 0;
     background-color: cornflowerblue;
     color: cornsilk;

@@ -10,67 +10,81 @@ let tempValue = state.temp;
 const tempControl = document.querySelector('#tempValue');
 const tempStyleControl = document.querySelector('#tempStyle');
 
+const changeTempColor = () => {
+    let color = '';
+    if (tempStyleControl.textContent.includes('°F')) {
+        if (tempValue >= 85) {
+            color = 'crimson';
+        } else if (tempValue >= 70) {
+            color = 'coral';
+        } else if (tempValue >= 55) {
+            color = 'peru';
+        } else if (tempValue >= 33) {
+            color = 'olive';
+        } else if (tempValue <= 32) {
+            color = 'steelblue';
+        }
+    } else {
+        if (tempValue >= 30) {
+            color = 'crimson';
+        } else if (tempValue >= 21) {
+            color = 'coral';
+        } else if (tempValue >= 13) {
+            color = 'peru';
+        } else if (tempValue >= 1) {
+            color = 'olive';
+        } else if (tempValue <= 0) {
+            color = 'steelblue';
+        }
+    }
+    tempControl.style.color = color;
+    tempStyleControl.style.color = color;
+};
+
 const increaseTemp = () => {
     tempValue += 1;
     tempControl.textContent = `${tempValue}`;
+    changeTempColor();
+    changeLandscape();
 };
 
 const decreaseTemp = () => {
     tempValue -= 1;
     tempControl.textContent = `${tempValue}`;
+    changeTempColor();
+    changeLandscape();
 };
-
-const changeTempColor = () => {
-    if (tempValue >= 80) {
-        tempControl.style.color = 'crimson';
-        tempStyleControl.style.color = 'crimson'
-    } else if (tempValue >= 70) {
-        tempControl.style.color = 'coral';
-        tempStyleControl.style.color = 'coral'
-    } else if (tempValue >= 60) {
-        tempControl.style.color = 'peru';
-        tempStyleControl.style.color = 'peru'
-    } else if (tempValue >= 50) {
-        tempControl.style.color = 'olive';
-        tempStyleControl.style.color = 'olive'
-    } else if (tempValue <= 49) {
-        tempControl.style.color = 'steelblue';
-        tempStyleControl.style.color = 'steelblue'
-    }
-};
-
-const upButton = document.querySelector('#increaseTempControl');
-upButton.addEventListener('click', increaseTemp);
-
-const downButton = document.querySelector('#decreaseTempControl');
-downButton.addEventListener('click', decreaseTemp);
-
-const changeTempColorUp = document.querySelector('#increaseTempControl');
-changeTempColorUp.addEventListener('click', changeTempColor);
-
-const changeTempColorDown = document.querySelector('#decreaseTempControl');
-changeTempColorDown.addEventListener('click', changeTempColor);
 
 // WAVE 2 //
 const landscapeContainer = document.querySelector('#landscape');
 
 const changeLandscape = () => {
-    if (tempValue >= 80) {
-        landscapeContainer.textContent = "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂";
-    } else if (tempValue >= 70) {
-        landscapeContainer.textContent = "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷";
-    } else if (tempValue >= 60) {
-        landscapeContainer.textContent = "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃";
-    } else if (tempValue <= 59) {
-        landscapeContainer.textContent = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
+    const landscapeContainer = document.getElementById('landscape')
+    
+    let landscape = '';
+    if (tempStyleControl.textContent.includes('°F')) {
+        if (tempValue >= 85) {
+            landscape = "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂";
+        } else if (tempValue >= 65) {
+            landscape = "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷";
+        } else if (tempValue >= 40) {
+            landscape = "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃";
+        } else if (tempValue <= 39) {
+            landscape = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
+        }
+    } else {
+        if (tempValue >= 30) {
+            landscape = "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂";
+        } else if (tempValue >= 18) {
+            landscape = "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷";
+        } else if (tempValue >= 5) {
+            landscape = "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃";
+        } else if (tempValue <= 4) {
+            landscape = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
+        }
     }
+    landscapeContainer.textContent = landscape
 };
-
-const changeLandscapeUp = document.querySelector('#increaseTempControl');
-changeLandscapeUp.addEventListener('click', changeLandscape);
-
-const changeLandscapeDown = document.querySelector('#decreaseTempControl');
-changeLandscapeDown.addEventListener('click', changeLandscape);
 
 // Wave 3 //
 let city = state.city;
@@ -81,9 +95,6 @@ const changeCity = () => {
     state.city = changeCityInput.value;
     cityName.textContent = state.city;
 };
-
-const inputCity = document.querySelector('#inputCity');
-inputCity.addEventListener('input', changeCity);
 
 // Wave 4 //
 const kelvinToFahrenheit = (temp) => {
@@ -101,6 +112,8 @@ const getLiveTemp = async () => {
 
     tempValue = Math.round(weather);
     tempControl.textContent = `${tempValue}`;
+    changeTempColor();
+    changeLandscape();
 };
 
 const getLatLon = async () => {
@@ -111,12 +124,9 @@ const getLatLon = async () => {
     });
     state.lat = response.data[0].lat;
     state.lon = response.data[0].lon;
-    getLiveTemp();
-    changeLandscape();
-};
 
-const currentTempButton = document.querySelector('#currentTempButton');
-currentTempButton.addEventListener('click', getLatLon);
+    getLiveTemp();
+};
 
 // Wave 5 //
 const changeSky = () => {
@@ -142,15 +152,68 @@ const changeSky = () => {
     landscape.classList = `garden__content ${skyColor}`;
 };
 
-const skySelect = document.getElementById('sky-select');
-skySelect.addEventListener('change', changeSky);
-
 // Wave 6  //
 const resetCity = () => {
     const changeCityInput = document.querySelector('#inputCity');
     changeCityInput.value = 'San Luis Obispo';
     cityName.textContent = 'San Luis Obispo';
+    state.city = 'San Luis Obispo';
+    getLatLon();
 };
 
-const cityButton = document.getElementById('cityButton');
-cityButton.addEventListener('click', resetCity);
+// Optional Enhancements //
+const fahrenheitToCelsius = () => {
+    return (tempValue - 32) * (5 / 9);
+};
+
+const celsiusToFahrenheit = () => {
+    return (tempValue * (9 / 5)) + 32;
+};
+
+const convertTemperature = () => {
+    const convertButton = document.querySelector('#convertTemp');
+    if (convertButton.textContent.includes('Convert to Celsius')) {
+        const weather = fahrenheitToCelsius();
+        tempValue = Math.round(weather);
+        tempControl.textContent = `${tempValue}`;
+        tempStyleControl.textContent = '°C';
+        convertTemp.textContent = 'Convert to Fahrenheit';
+    } else if (convertButton.textContent.includes('Convert to Fahrenheit')) {
+        const weather = celsiusToFahrenheit();
+        tempValue = Math.round(weather);
+        tempControl.textContent = `${tempValue}`;
+        tempStyleControl.textContent = '°F';
+        convertTemp.textContent = 'Convert to Celsius';
+    }
+};
+
+
+// Register Event Handlers //
+const registerEventHandlers = () => {
+    getLiveTemp();
+
+    const increaseTempControl = document.getElementById('increaseTempControl');
+    increaseTempControl.addEventListener('click', increaseTemp)
+
+    const decreaseTempControl = document.getElementById('decreaseTempControl');
+    decreaseTempControl.addEventListener('click', decreaseTemp)
+
+    changeCity();
+    const inputCity = document.querySelector('#inputCity');
+    inputCity.addEventListener('input', changeCity);
+
+    const currentTempButton = document.querySelector('#currentTempButton');
+    currentTempButton.addEventListener('click', getLatLon);
+
+    changeSky();
+    const skySelect = document.getElementById('sky-select');
+    skySelect.addEventListener('change', changeSky);
+
+    const resetCityButton = document.getElementById('resetCityButton');
+    resetCityButton.addEventListener('click', resetCity);
+
+    const convertTemp = document.getElementById('convertTemp');
+    convertTemp.addEventListener('click', convertTemperature);
+    };
+
+document.addEventListener("DOMContentLoaded", registerEventHandlers);
