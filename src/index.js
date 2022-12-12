@@ -1,104 +1,150 @@
-tempValue = 71
-
-const updateSky = () => {
-    const inputSky = document.getElementById("skySelect").value;
-    const skyContainer = document.getElementById("sky");
-    let sky = "";
-    let skyColor = "";
-    if (inputSky === "Cloudy") {
-        sky = "☁️☁️ ☁️ ☁️☁️ ☁️ 🌤 ☁️ ☁️☁️";
-        skyColor = "cloudy";
-    } else if (inputSky === "Sunny") {
-        sky = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
-        skyColor = "sunny";
-    } else if (inputSky === "Rainy") {
-        sky = "🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧";
-        skyColor = "rainy";
-    } else if (inputSky === "Snowy") {
-        sky = "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨";
-        skyColor = "snowy";
-    }
-    skyContainer.textContent = sky;
-    const gardenContent = document.getElementById("gardenContent");
-    gardenContent.classList = `garden__content ${skyColor}`;
+const state = {
+    temp: 72,
+    city: 'San Luis Obispo',
+    lat: 35.2828,
+    lon: -120.6596,
 };
 
-const updateCityName = () => {
-    const inputName = document.getElementById("cityNameInput").value;
-    const headerCityName = document.getElementById("headerCityName");
-    headerCityName.textContent = inputName;
-};
-
-const resetCityName = () => {
-    const cityNameInput = document.getElementById("cityNameInput");
-    cityNameInput.value = "San Luis Obispo";
-    updateCityName();
-};
-
-const updateTempStyles = (currentTemp) => {
-    const tempValueContainer = document.getElementById("tempValue");
-    let color = "teal";
-    if ( currentTemp >= 80) {
-        color = "red";
-    } else if (currentTemp >= 70) {
-        color = "orange";
-    } else if (currentTemp >= 60) {
-        color = "yellow";
-    } else if (currentTemp >= 50) {
-        color = "green";
-    }
-    tempValueContainer.classList = color;
-}
-
-const updateGarden = (currentTemp) => {
-    const landscapeContainer = document.getElementById("landscape");
-    let landscape = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
-    if ( currentTemp >= 80) {
-        landscape = "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂";
-    } else if (currentTemp >= 70) {
-        landscape = "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷";
-    } else if (currentTemp >= 60) {
-        landscape = "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃";
-    }
-    landscapeContainer.textContent = landscape;
-}
-
-const updateTemp = tempValue => {
-    const tempValueContainer = document.getElementById("tempValue");
-    tempValueContainer.textContent = tempValue;
-    updateTempStyles(tempValue);
-    updateGarden(tempValue);
-}
+// WAVE 1 //
+let tempValue = state.temp;
+const tempControl = document.querySelector('#tempValue');
 
 const increaseTemp = () => {
     tempValue += 1;
-    updateTemp(tempValue);
+    tempControl.textContent = `${tempValue}`;
 };
 
 const decreaseTemp = () => {
     tempValue -= 1;
-    updateTemp(tempValue);
+    tempControl.textContent = `${tempValue}`;
 };
 
-const registerEventHandlers = () => {
-    updateTemp(tempValue);
-
-    const increaseTempControl = document.getElementById("increaseTempControl");
-    increaseTempControl.addEventListener("click", increaseTemp);
-    
-    const decreaseTempControl = document.getElementById("decreaseTempControl");
-    decreaseTempControl.addEventListener("click", decreaseTemp);
-
-    updateCityName();
-    const cityNameInput = document.getElementById("cityNameInput");
-    cityNameInput.addEventListener("input", updateCityName);
-
-    const cityNameResetBtn = document.getElementById("cityNameReset");
-    cityNameResetBtn.addEventListener("click", resetCityName);
-
-    updateSky();
-    const skySelect = document.getElementById("skySelect");
-    skySelect.addEventListener("change", updateSky);
+const changeTempColor = () => {
+    if (tempValue >= 80) {
+        tempControl.style.color = 'crimson';
+    } else if (tempValue >= 70) {
+        tempControl.style.color = 'coral';
+    } else if (tempValue >= 60) {
+        tempControl.style.color = 'peru';
+    } else if (tempValue >= 50) {
+        tempControl.style.color = 'olive';
+    } else if (tempValue <= 49) {
+        tempControl.style.color = 'steelblue';
+    }
 };
 
-document.addEventListener("DOMContentLoaded", registerEventHandlers);
+const upButton = document.querySelector('#increaseTempControl');
+upButton.addEventListener('click', increaseTemp);
+
+const downButton = document.querySelector('#decreaseTempControl');
+downButton.addEventListener('click', decreaseTemp);
+
+const changeTempColorUp = document.querySelector('#increaseTempControl');
+changeTempColorUp.addEventListener('click', changeTempColor);
+
+const changeTempColorDown = document.querySelector('#decreaseTempControl');
+changeTempColorDown.addEventListener('click', changeTempColor);
+
+// WAVE 2 //
+const landscapeContainer = document.querySelector('#landscape');
+
+const changeLandscape = () => {
+    if (tempValue >= 80) {
+        landscapeContainer.textContent = "🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂";
+    } else if (tempValue >= 70) {
+        landscapeContainer.textContent = "🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷";
+    } else if (tempValue >= 60) {
+        landscapeContainer.textContent = "🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃";
+    } else if (tempValue <= 59) {
+        landscapeContainer.textContent = "🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲";
+    }
+};
+
+const changeLandscapeUp = document.querySelector('#increaseTempControl');
+changeLandscapeUp.addEventListener('click', changeLandscape);
+
+const changeLandscapeDown = document.querySelector('#decreaseTempControl');
+changeLandscapeDown.addEventListener('click', changeLandscape);
+
+// Wave 3 //
+let city = state.city;
+const cityName = document.querySelector('#cityName');
+
+const changeCity = () => {
+    const changeCityInput = document.querySelector('#inputCity');
+    state.city = changeCityInput.value;
+    cityName.textContent = state.city;
+};
+
+const inputCity = document.querySelector('#inputCity');
+inputCity.addEventListener('input', changeCity);
+
+// Wave 4 //
+const kelvinToFahrenheit = (temp) => {
+  return (temp - 273.15) * (9 / 5) + 32;
+};
+
+const getLiveTemp = async () => {
+    const response = await axios.get('http://127.0.0.1:5000/weather', {
+        params: {
+            lat: state.lat,
+            lon: state.lon,
+        },
+    });
+    const weather = kelvinToFahrenheit(response.data.main.temp);
+
+    tempValue = Math.round(weather);
+    tempControl.textContent = `${tempValue}`;
+};
+
+const getLatLon = async () => {
+    const response = await axios.get('http://127.0.0.1:5000/location', {
+        params: {
+            q: state.city,
+        },
+    });
+    state.lat = response.data[0].lat;
+    state.lon = response.data[0].lon;
+    getLiveTemp();
+    changeLandscape();
+};
+
+const currentTempButton = document.querySelector('#currentTempButton');
+currentTempButton.addEventListener('click', getLatLon);
+
+// Wave 5 //
+const changeSky = () => {
+    const inputSky = document.getElementById('sky-select').value;
+    const skyContainer = document.getElementById('sky');
+    let sky = '';
+    let skyColor = '';
+    if (inputSky === 'Sunny') {
+        sky = '☁️ ☁️ ☁️ ☀️ ☁️ ☁️';
+        skyColor = 'sunny';
+    } else if (inputSky === 'Cloudy') {
+        sky = '☁️☁️ ☁️ ☁️☁️ ☁️ 🌤 ☁️ ☁️☁️';
+        skyColor = 'cloudy';
+    } else if (inputSky === 'Rainy') {
+        sky = '🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧';
+        skyColor = 'rainy';
+    } else if (inputSky === 'Snowy') {
+        sky = '🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨';
+        skyColor = 'snowy';
+    }
+    skyContainer.textContent = sky;
+    const landscape = document.getElementById('gardenContent');
+    landscape.classList = `garden__content ${skyColor}`;
+};
+
+const skySelect = document.getElementById('sky-select');
+skySelect.addEventListener('change', changeSky);
+
+// Wave 6  //
+const resetCity = () => {
+    const changeCityInput = document.querySelector('#inputCity');
+    changeCityInput.value = 'San Luis Obispo';
+    cityName.textContent = 'San Luis Obispo';
+};
+
+const cityButton = document.getElementById('cityButton');
+cityButton.addEventListener('click', resetCity);

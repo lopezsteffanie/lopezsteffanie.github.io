@@ -10,17 +10,27 @@
 
 <body>
     <header class="header__header">
-        <h1>Weather Report</h1>
-        <span>For the lovely city of 
-            <span id="headerCityName" class="header__city-name"></span></span>
+        <h1>Stevie's Weather Report</h1>
     </header>
+    
+    <section class="city-name__display">
+        <p>For the lovely city of 
+            <span id="cityName" class="header__city-name"></span></p>
+    </section>
 
+    <section class="city-name__section">
+        <h2>City Name</h2>
+        <input type="text" id="inputCity" value="San Luis Obispo" />
+        <button id="currentTempButton" class="city__current-temp-btn">Get Realtime Temp</button>
+        <button id="cityButton" class="city__reset-btn">Reset</button>
+    </section>
+        
     <section class="temperature__section">
         <h2>Temperature</h2>
         <div class="temperature__content">
             <div class="temperature__controls">
-                <span id="increaseTempControl">⬆️</span>
-                <span id="decreaseTempControl">⬇️</span>
+                <button id="increaseTempControl">👆</button>
+                <button id="decreaseTempControl">👇</button>
             </div>
             <span id="tempValue"></span>
         </div>
@@ -28,18 +38,12 @@
 
     <section class="sky__section">
         <h2>Sky</h2>
-        <select id="skySelect">
+        <select id="sky-select">
             <option>Sunny</option>
             <option>Cloudy</option>
             <option>Rainy</option>
             <option>Snowy</option>
         </select>
-    </section>
-
-    <section class="city-name__section">
-        <h2>City Name</h2>
-        <input type="text" id="cityNameInput" value="San Luis Obispo" />
-        <button id="cityNameReset" class="city-name__reset-btn">Reset</button>
     </section>
 
     <section class="garden__section">
