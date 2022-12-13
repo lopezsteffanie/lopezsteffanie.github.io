@@ -151,6 +151,7 @@ const changeSky = () => {
         skyColor = 'snowy';
     }
     skyContainer.style.color = sky;
+    skyContainer.textContent = sky
     const landscape = document.getElementById('gardenContent');
     landscape.classList = `garden__content ${skyColor}`;
 };
