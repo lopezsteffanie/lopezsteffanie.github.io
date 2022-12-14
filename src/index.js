@@ -12,6 +12,7 @@ const state = {
 let tempValue = state.temp;
 const tempControl = document.querySelector('#tempValue');
 const tempStyleControl = document.querySelector('#tempStyle');
+const convertButton = document.querySelector('#convertTemp');
 
 const changeTempColor = () => {
     let color = '';
@@ -114,7 +115,7 @@ const getLiveTemp = async () => {
     const weather = kelvinToFahrenheit(response.data.main.temp);
 
     tempStyleControl.textContent = '°F';    
-    convertTemp.textContent = 'Convert to Celsius';
+    convertButton.textContent = 'Convert to Celsius';
     tempValue = Math.round(weather);
     tempControl.textContent = `${tempValue}`;
     changeTempColor();
@@ -161,7 +162,7 @@ const changeSky = () => {
 // Wave 6  //
 const resetCity = () => {
     tempStyleControl.textContent = '°F';
-    convertTemp.textContent = 'Convert to Celsius';
+    convertButton.textContent = 'Convert to Celsius';
     const changeCityInput = document.querySelector('#inputCity');
     changeCityInput.value = 'San Luis Obispo, CA';
     cityName.textContent = 'San Luis Obispo, CA';
@@ -179,19 +180,18 @@ const celsiusToFahrenheit = () => {
 };
 
 const convertTemperature = () => {
-    const convertButton = document.querySelector('#convertTemp');
     if (convertButton.textContent.includes('Convert to Celsius')) {
         const weather = fahrenheitToCelsius();
         tempValue = Math.round(weather);
         tempControl.textContent = `${tempValue}`;
         tempStyleControl.textContent = '°C';
-        convertTemp.textContent = 'Convert to Fahrenheit';
+        convertButton.textContent = 'Convert to Fahrenheit';
     } else if (convertButton.textContent.includes('Convert to Fahrenheit')) {
         const weather = celsiusToFahrenheit();
         tempValue = Math.round(weather);
         tempControl.textContent = `${tempValue}`;
         tempStyleControl.textContent = '°F';
-        convertTemp.textContent = 'Convert to Celsius';
+        convertButton.textContent = 'Convert to Celsius';
     }
 };
 
