@@ -74,13 +74,13 @@
     }
     
     #tempValue {
-        font-size: 1rem;
+        font-size: 3rem;
         margin-left: 1.5rem;
         color: coral;
     }
     
     #tempStyle {
-        font-size: 1rem;
+        font-size: 3rem;
         margin-left: 0.5rem;
         color: coral;
     }
@@ -249,13 +249,13 @@
     }
     
     #tempValue {
-        font-size: 3rem;
+        font-size: 1rem;
         margin-left: 1.5rem;
         color: coral;
     }
     
     #tempStyle {
-        font-size: 3rem;
+        font-size: 1rem;
         margin-left: 0.5rem;
         color: coral;
     }
