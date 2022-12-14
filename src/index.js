@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const state = {
     temp: 72,
-    city: 'San Luis Obispo',
+    city: 'San Luis Obispo, CA',
     lat: 35.2828,
     lon: -120.6596,
 };
@@ -159,9 +159,10 @@ const changeSky = () => {
 // Wave 6  //
 const resetCity = () => {
     const changeCityInput = document.querySelector('#inputCity');
-    changeCityInput.value = 'San Luis Obispo';
-    cityName.textContent = 'San Luis Obispo';
-    state.city = 'San Luis Obispo';
+    changeCityInput.value = 'San Luis Obispo, CA';
+    cityName.textContent = 'San Luis Obispo, CA';
+    state.city = 'San Luis Obispo, CA';
+    tempStyleControl.textContent = '°F';
     getLatLon();
 };
 
@@ -193,7 +194,8 @@ const convertTemperature = () => {
 
 // Register Event Handlers //
 const registerEventHandlers = () => {
-    getLiveTemp();
+    // getLiveTemp();
+    getLatLon();
 
     const increaseTempControl = document.getElementById('increaseTempControl');
     increaseTempControl.addEventListener('click', increaseTemp)
