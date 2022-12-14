@@ -114,6 +114,7 @@ const getLiveTemp = async () => {
     const weather = kelvinToFahrenheit(response.data.main.temp);
 
     tempStyleControl.textContent = '°F';    
+    convertTemp.textContent = 'Convert to Celsius';
     tempValue = Math.round(weather);
     tempControl.textContent = `${tempValue}`;
     changeTempColor();
@@ -160,6 +161,7 @@ const changeSky = () => {
 // Wave 6  //
 const resetCity = () => {
     tempStyleControl.textContent = '°F';
+    convertTemp.textContent = 'Convert to Celsius';
     const changeCityInput = document.querySelector('#inputCity');
     changeCityInput.value = 'San Luis Obispo, CA';
     cityName.textContent = 'San Luis Obispo, CA';
