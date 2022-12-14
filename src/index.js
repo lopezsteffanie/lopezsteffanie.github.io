@@ -158,11 +158,11 @@ const changeSky = () => {
 
 // Wave 6  //
 const resetCity = () => {
+    tempStyleControl.textContent = '°F';
     const changeCityInput = document.querySelector('#inputCity');
     changeCityInput.value = 'San Luis Obispo, CA';
     cityName.textContent = 'San Luis Obispo, CA';
     state.city = 'San Luis Obispo, CA';
-    tempStyleControl.textContent = '°F';
     getLatLon();
 };
 
