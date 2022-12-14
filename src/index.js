@@ -113,6 +113,7 @@ const getLiveTemp = async () => {
     });
     const weather = kelvinToFahrenheit(response.data.main.temp);
 
+    tempStyleControl.textContent = '°F';    
     tempValue = Math.round(weather);
     tempControl.textContent = `${tempValue}`;
     changeTempColor();
