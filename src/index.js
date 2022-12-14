@@ -105,7 +105,7 @@ const kelvinToFahrenheit = (temp) => {
 };
 
 const getLiveTemp = async () => {
-    const response = await axios.get('http://127.0.0.1:5000/weather', {
+    const response = await axios.get('https://stevie-weather-server.herokuapp.com/weather', {
         params: {
             lat: state.lat,
             lon: state.lon,
@@ -120,7 +120,7 @@ const getLiveTemp = async () => {
 };
 
 const getLatLon = async () => {
-    const response = await axios.get('http://127.0.0.1:5000/location', {
+    const response = await axios.get('https://stevie-weather-server.herokuapp.com/location', {
         params: {
             q: state.city,
         },
