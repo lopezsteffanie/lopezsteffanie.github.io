@@ -1,5 +1,5 @@
-import 'regenerator-runtime/runtime';
-import axios from 'axios';
+// import 'regenerator-runtime/runtime';
+// import axios from 'axios';
 
 const state = {
     temp: 72,
@@ -105,7 +105,7 @@ const kelvinToFahrenheit = (temp) => {
 };
 
 const getLiveTemp = async () => {
-    const response = await axios.get('https://stevie-weather-server.herokuapp.com/weather', {
+    const response = await axios.get('http://127.0.0.1:5000/weather', {
         params: {
             lat: state.lat,
             lon: state.lon,
@@ -120,7 +120,7 @@ const getLiveTemp = async () => {
 };
 
 const getLatLon = async () => {
-    const response = await axios.get('https://stevie-weather-server.herokuapp.com/location', {
+    const response = await axios.get('http://127.0.0.1:5000/location', {
         params: {
             q: state.city,
         },
@@ -190,7 +190,6 @@ const convertTemperature = () => {
         convertTemp.textContent = 'Convert to Celsius';
     }
 };
-
 
 // Register Event Handlers //
 const registerEventHandlers = () => {
